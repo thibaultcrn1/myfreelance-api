@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const ClientSchema = new mongoose.Schema({
     id: {
-        type: mongoose.SchemaTypes.String,
+        type: mongoose.SchemaTypes.Number,
         required: true,
         unique: true,
     },
@@ -43,4 +43,4 @@ const ClientSchema = new mongoose.Schema({
     }
 })
 
-module.exports + mongoose.model('ClientRegistered', ClientSchema);
+module.exports = mongoose.model('ClientRegistered', ClientSchema);
