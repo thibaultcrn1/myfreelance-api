@@ -1,16 +1,8 @@
-const router = require('express').Router();
 const ClientSchema = require('../database/schemas/ClientSchema');
 
-const { createClientController, updateClientController, deleteClientController } = require('../controllers/clientController');
-
-router.get('/', (req, res) => {
-    res.send({ msg: 'hello world!' });
-})
-
-router.put('/create', async(req, res) => createClientController(req, res));
-
-router.put('/update', async(req, res) => {
+async function createClientController(req, res) {
     const { id, client_number, firstname, lastname, email, address_number, address_line, zip_code, country } = req.body;
+
     if(!id) return res.status(400).send({ msg: "id Required" });
     if(!client_number) return res.status(400).send({ msg: "client_number Required" });
     if(!firstname) return res.status(400).send({ msg: "firstname Required" });
@@ -21,8 +13,8 @@ router.put('/update', async(req, res) => {
     if(!zip_code) return res.status(400).send({ msg: "zip_code Required" });
     if(!country) return res.status(400).send({ msg: "country Required"})
 
-    const update = await ClientSchema({ 
-        id: id, 
+    const createClient = await new ClientSchema({
+        id: id,  
         client_number: client_number, 
         firstname: firstname, 
         lastname: lastname, 
@@ -33,8 +25,18 @@ router.put('/update', async(req, res) => {
         country: country 
     });
 
-    update ? res.send(update) : res.status(400).send({ msg: "Could not find document." });
-    return update.save();
-})
+    return createClient.save()
+    .then((newClient) => res.status(200).send({ newClient }))
+    .catch((err) => res.status(400).send({ err }));
 
-module.exports = router;
+}
+
+async function updateClientController(req, res) {
+
+}
+
+async function deleteClientController(req, res) {
+
+}
+
+module.exports = { createClientController, updateClientController, deleteClientController };
