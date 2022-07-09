@@ -39,7 +39,12 @@ const ClientSchema = new mongoose.Schema({
     zip_code: {
         type: mongoose.SchemaTypes.Number,
         required: true,
-        unique: true,
+        unique: false,
+    },
+    country: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+        unique: false,
     }
 })
 
