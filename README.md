@@ -1,6 +1,6 @@
  [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://www.javascript.com/)
 [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://github.com/)
-[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://blastbot.aralium.fr/)
+[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://thibault-carron.ml/)
 
 <br />
 <p align="center">
