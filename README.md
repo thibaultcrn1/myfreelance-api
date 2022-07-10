@@ -26,7 +26,8 @@
 ## Fabriqué avec
 <!-- MADE WITH-->
 * [NodeJS](https://nodejs.org/en/)
-* [DiscordJS](https://discord.js.org/#/)
+* [ExpressJS](https://expressjs.com/fr/)
+* [CryptoJS](https://cryptojs.gitbook.io/docs/)
 <br />
 
 ## Installation
