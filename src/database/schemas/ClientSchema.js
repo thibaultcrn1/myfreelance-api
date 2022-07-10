@@ -6,11 +6,6 @@ const ClientSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    client_number: {
-        type: mongoose.SchemaTypes.Number,
-        required: true,
-        unique: true,
-    },
     firstname: {
         type: mongoose.SchemaTypes.String,
         required: true,
