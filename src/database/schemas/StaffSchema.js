@@ -21,6 +21,11 @@ const StaffSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    password: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+        unique: false,
+    },
     isAdmin: {
         type: mongoose.SchemaTypes.Boolean,
         required: true,
