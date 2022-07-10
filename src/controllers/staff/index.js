@@ -3,8 +3,7 @@ const { encrypt } = require('../../utils/utils');
 
 async function createStaffController(req, res) {
 
-    const { id } = req.params;
-    const { firstname, lastname, email, password, isAdmin } = req.body;
+    const { id, firstname, lastname, email, password, isAdmin } = req.body;
 
     if(!id) return res.status(400).send({ msg: "ID Required" });
     if(!firstname) return res.status(400).send({ msg: "FIRSTNAME Required" });
@@ -32,7 +31,8 @@ async function createStaffController(req, res) {
 
 async function updateStaffController(req, res) {
 
-    const { id, firstname, lastname, email, password, isAdmin } = req.body;
+    const { id } = req.query;
+    const { firstname, lastname, email, password, isAdmin } = req.body;
 
     if(!id) return res.status(400).send({ msg: 'ID Required' });
     if(!firstname) return res.status(400).send({ msg: 'FIRSTNAME Required' });
@@ -62,7 +62,7 @@ async function updateStaffController(req, res) {
 
 async function deleteStaffController(req, res) {
 
-    const { id } = req.body;
+    const { id } = req.query;
 
     if(!id) return res.status(400).send({ msg: "ID Required" });
 

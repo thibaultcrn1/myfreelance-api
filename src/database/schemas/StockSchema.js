@@ -22,7 +22,7 @@ const StockSchema = new mongoose.Schema({
         unique: false,
         default: "",
     },
-    quantity: {
+    stock: {
         type: mongoose.SchemaTypes.Number,
         required: true,
         unique: false,

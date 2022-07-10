@@ -21,6 +21,11 @@ const ClientSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    password: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+        unique: true,
+    },
     address_number: {
         type: mongoose.SchemaTypes.Number,
         required: true,
