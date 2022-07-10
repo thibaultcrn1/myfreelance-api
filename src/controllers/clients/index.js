@@ -36,7 +36,7 @@ async function createClientController(req, res) {
 
 async function updateClientController(req, res) {
 
-    const { id } = req.params;
+    const { id } = req.query;
     const { firstname, lastname, email, address_number, address_line, zip_code, country } = req.body;
 
     if(!id) return res.status(400).send({ msg: "ID Required" });
