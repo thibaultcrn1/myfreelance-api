@@ -1,11 +1,16 @@
 require('dotenv').config();
 
 const express = require('express');
+const { unless } = require('express-unless');
 const mongoose = require('mongoose');
 
 const app = express();
 const routes = require('./routes/index.js');
 const PORT = process.env.PORT || 3002;
+
+const { auth, errors } = require('./middlewares');
+
+mongoose.Promise = global.Promise;
 
 mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
@@ -24,9 +29,19 @@ mongoose.connection.on('err', err => {
     console.log(`[ERROR] MongoDB Error \n${err.stack}`)
 })
 
+auth.authenticateToken.unless = unless;
+app.use(auth.authenticateToken.unless({
+    path: [
+        { url: '/api/auth/login', method: ["POST"] },
+        { url: '/api/auth/register', method: ["POST"] },
+    ]
+}))
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', routes);
+
+app.use(errors.errorHandler);
 
 app.listen(PORT, () => console.log(`API : Running on PORT ${PORT}`));

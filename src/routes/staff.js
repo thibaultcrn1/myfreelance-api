@@ -1,6 +1,4 @@
 const router = require('express').Router();
-const { encrypt, decrypt } = require('../utils/utils');
-const CryptoJS = require('crypto-js');
 
 const { createStaffController, updateStaffController, deleteStaffController } = require('../controllers/staff');
 

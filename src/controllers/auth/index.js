@@ -1,18 +1,39 @@
-const router = require('express').Router();
-const ClientSchema = require('../../database/schemas/ClientSchema');
+const bcrypt = require('bcryptjs');
+const clientService = require('../../services/clients')
 
-const { generateAccessToken } = require('../../utils/utils');
+function register(req, res, next) {
+    const { password } = req.body;
+    const salt = bcrypt.genSalt(10);
 
-async function auth(req, res) {
-    const { id, email } = req.body;
+    req.body.password = bcrypt.hashSync(password, salt);
 
-    if(!id) return res.status(400).send({ msg: "ID: Required" });
+    clientService.register(req.body, (error, result) => {
+        if(error) return next(error);
+        return res.status(200).send({
+            msg: "Success",
+            data: result,
+        });
+    });
+};
 
-    const user = await ClientSchema.findOne({ id: id });
+function login(req, res, next) {
+    const { email, password } = req.body;
 
-    const accessToken = generateAccessToken(user);
-
-    return res.status(200).send({ accessToken });
+    clientService.login({ email, password }, (error, result) => {
+        if(error) return next(error);
+        return res.status(200).send({
+            msg: "Success",
+            data: result,
+        });
+    })
 }
 
-module.exports = { auth };
+function clientProfile(req, res, next) {
+    return res.status(200).send({ msg: "Authorized User!" });
+}
+
+module.exports = {
+    register,
+    login,
+    clientProfile
+};

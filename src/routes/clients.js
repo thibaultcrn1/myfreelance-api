@@ -1,13 +1,13 @@
 const router = require('express').Router();
 
-const { createClientController, updateClientController, deleteClientController } = require('../controllers/clients');
+const { auth } = require('../controllers');
 
 router.get('/', (req, res) => {
-    res.send({ msg: 'hello world!' });
+    res.send({ msg: 'Unauthorized' });
 })
 
-router.put('/create', async(req, res) => createClientController(req, res));
-router.put('/update', async(req, res) => updateClientController(req, res));
-router.put('/delete', async(req, res) => deleteClientController(req, res));
+router.post('/login', auth.login);
+router.post('/register', auth.register);
+router.get('/client-profile', auth.clientProfile);
 
 module.exports = router;
