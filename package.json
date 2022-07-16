@@ -1,0 +1,24 @@
+{
+  "name": "myfreelance-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thibaultcrn1/myfreelance-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thibaultcrn1/myfreelance-api/issues"
+  },
+  "homepage": "https://github.com/thibaultcrn1/myfreelance-api#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express.js": "^1.0.0",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
