@@ -16,6 +16,11 @@ const StockSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
         required: true,
     },
+    category: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+        unique: false,
+    },
     image: {
         type: mongoose.SchemaTypes.String,
         required: true,

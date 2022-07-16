@@ -21,31 +21,19 @@ const ClientSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    password: {
-        type: mongoose.SchemaTypes.String,
-        required: true,
-        unique: true,
-    },
-    address_number: {
-        type: mongoose.SchemaTypes.Number,
+    isAdmin: {
+        type: mongoose.SchemaTypes.Boolean,
         required: true,
         unique: false,
+        default: false,
     },
-    address_line: {
+    rank: {
         type: mongoose.SchemaTypes.String,
         required: true,
         unique: false,
-    },
-    zip_code: {
-        type: mongoose.SchemaTypes.Number,
-        required: true,
-        unique: false,
-    },
-    country: {
-        type: mongoose.SchemaTypes.String,
-        required: true,
-        unique: false,
+        default: "user",
+        
     }
 })
 
-module.exports = mongoose.model('ClientRegistered', ClientSchema);
+module.exports = mongoose.model('Client', ClientSchema);

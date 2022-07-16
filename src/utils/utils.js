@@ -1,14 +1,10 @@
-const CryptoJS = require('crypto-js');
+const jwt = require('jsonwebtoken');
 
-function encrypt(password) {
-    return CryptoJS.AES.encrypt(password, process.env.SECRET_PASSPHRASE).toString();
+async function generateAccessToken(user) {
+
+    console.log(user);
+
+    // return jwt.sign(user, process.env.ACCESS_TOKEN_PASSPHRASE, { expiresIn: "1800s" });
 }
 
-function decrypt(password) {
-    return CryptoJS.AES.decrypt(password, process.env.SECRET_PASSPHRASE).toString(CryptoJS.enc.Utf8);
-}
-
-module.exports = {
-    encrypt,
-    decrypt,
-}
+module.exports = { generateAccessToken };
