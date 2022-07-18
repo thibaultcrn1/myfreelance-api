@@ -10,7 +10,6 @@ async function authenticateToken(req, res, next) {
         if(err) return res.status(403).send({ error: err });
         req.user = user;
 
-        console.log(req.user);
         next();
     })
 
