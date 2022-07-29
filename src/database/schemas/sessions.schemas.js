@@ -12,6 +12,11 @@ const SessionsSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    email: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+        unique: true,
+    },
 
 })
 

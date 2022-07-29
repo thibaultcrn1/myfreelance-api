@@ -6,7 +6,6 @@ const UsersSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
         required: true,
         unique: true,
-        default: Date.now().toString(),
     },
     firstname: {
         type: mongoose.SchemaTypes.String,
@@ -27,6 +26,12 @@ const UsersSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
         required: true,
         unique: true,
+    },
+    date: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+        unique: false,
+        default: Date.now(),
     },
     isAdmin: {
         type: mongoose.SchemaTypes.Boolean,
