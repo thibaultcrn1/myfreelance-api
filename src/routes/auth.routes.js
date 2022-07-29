@@ -1,21 +1,14 @@
 const router = require('express').Router();
+const { UsersSchema } = require('../database/schemas')
 
 const { registerControllers, loginControllers, refreshTokenControllers, logoutControllers } = require('../controllers/auth');
 const { authenticateToken } = require('../middlewares/auth')
 
-const users = [
-    {
-        username: "Thibault",
-        email: "tcarron6@outlook.com"
-    },
-    {
-        username: "Maëva",
-        email: "dasilva.maevaeic@gmail.com"
-    }
-]
+router.get('/users', authenticateToken, async (req, res) => {
 
-router.get('/users', authenticateToken, (req, res) => {
-    res.json(users.filter(user => user.username === req.user.name));
+    const users = await UsersSchema.find();
+
+    res.json(users.filter(user => user.email === req.user.email));
 });
 
 router.post('/refreshtoken', (req, res) => refreshTokenControllers(req, res));
