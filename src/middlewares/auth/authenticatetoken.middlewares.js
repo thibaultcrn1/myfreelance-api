@@ -7,7 +7,7 @@ async function authenticateToken(req, res, next) {
     if(token === null) return res.status(401).send({ msg: "TOKEN is null" });
 
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-        if(err) return res.status(403).send({ error: err });
+        if(err) return res.status(403).send({ msg: "Unauthorized" });
         req.user = user;
 
         next();
