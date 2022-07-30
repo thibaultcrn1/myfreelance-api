@@ -20,6 +20,7 @@
   "homepage": "https://github.com/thibaultcrn1/myfreelance-api#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express.js": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
