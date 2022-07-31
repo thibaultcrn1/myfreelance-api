@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const cors = require('cors');
+const Store = require('connect-mongo');
 require('dotenv').config();
 
 const app = express();
@@ -52,6 +54,16 @@ mongoose.connection.on('err', (err) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+    secret: process.env.SESSION_SECRET_KEY,
+    cookie: {
+        maxAge: 60000 * 60 * 24
+    },
+    resave: false,
+    saveUninitialized: false,
+    store: Store.create({ mongoUrl: process.env.MONGODB })
+}));
 
 app.use(cors({
     origin: ['http://localhost:4200'],

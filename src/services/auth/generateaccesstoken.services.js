@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
-async function generateAccessToken(user) {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+async function generateAccessToken(payload) {
+    return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
 }
 
 module.exports = { generateAccessToken };

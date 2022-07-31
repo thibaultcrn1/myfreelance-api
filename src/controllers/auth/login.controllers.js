@@ -10,32 +10,39 @@ async function loginControllers(req, res) {
     if(!email) return res.status(400).send({ msg: "EMAIL needed" });
     if(!password) return res.status(400).send({ msg: "PASSWORD needed"});
 
-    const users = await UsersSchema.findOne({ email: email })
+    UsersSchema.findOne({ email: email }).then((user, err) => {
 
-    bcrypt.compare(password, users.password)
-    .then(async function(result) {
-        if(result == true) {
-            const user = {
-                id: users.id,
-                firstname: users.firstname,
-                lastname: users.lastname,
-                email: users.email,
-                password: users.password,
-                isAdmin: users.isAdmin,
-            };
-        
-            const accessToken = await generateAccessToken(user);
-            const refreshToken = await generateRefreshToken(user);
-            const email = users.email;
-        
-            saveSessions(accessToken, refreshToken, email);
+        if(user === null) return res.status(400).send({ msg: "Invalid email" });
 
-            return res.send({ accessToken, refreshToken, email });
-        } else {
-            return res.status(400).send({ msg: "Invalid Password" });
-        }
+        bcrypt.compare(password, user.password)
+        .then(async (result) => {
+            if(result === true) {
+
+                const payload = {
+                    id: user.id,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    email: user.email,
+                    password: user.password,
+                    isAdmin: user.isAdmin
+                }
+
+                const accessToken = await generateAccessToken(payload);
+                const refreshToken = await generateRefreshToken(payload);
+                const email = user.email;
+
+                req.session.user = {
+                    accessToken, refreshToken, email
+                }
+
+                return res.send({ accessToken, refreshToken, email });
+
+            } else {
+                return res.status(400).send({ msg: "Invalid Password" });
+            }
+        })
+
     })
-    .catch((err) => res.status(500).send({ err }));
 
 }
 
