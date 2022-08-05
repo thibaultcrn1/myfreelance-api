@@ -19,6 +19,8 @@ console.log(' ');
 console.log('[INFO] ' + API_URI + "/auth/register");
 console.log('[INFO] ' + API_URI + "/auth/login");
 console.log('[INFO] ' + API_URI + "/auth/logout");
+console.log('[INFO] ' + API_URI + "/auth/reset-password");
+console.log('[INFO] ' + API_URI + "/auth/forgot-password");
 console.log('[INFO] ' + API_URI + "/auth/refreshtoken");
 console.log('[INFO] ' + API_URI + "/auth/users");
 console.log(' ');
@@ -58,7 +60,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: process.env.SESSION_SECRET_KEY,
     cookie: {
-        maxAge: 60000 * 60 * 24
+        maxAge: 60000 * 60 * 24,
+        httpOnly: false
     },
     resave: false,
     saveUninitialized: false,
