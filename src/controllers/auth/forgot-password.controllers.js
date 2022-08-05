@@ -19,7 +19,7 @@ async function forgotPasswordControllers(req, res) {
             to: email,
             subject: 'MyFreelance - Réinitialiser votre mot de passe.',
             html: `
-                <h2>Cliquez <a href="${process.env.CLIENT_URL}/auth/reset-password/${token}">ici</a> afin de réinitialiser votre mot de passe !</h2>
+                <h2>Cliquez <a href="${process.env.CLIENT_URL}/auth/reset-password?reset=${token}">ici</a> afin de réinitialiser votre mot de passe !</h2>
             `
         }
 
