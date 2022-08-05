@@ -39,6 +39,11 @@ const UsersSchema = new mongoose.Schema({
         unique: false,
         default: false,
     },
+    resetLink: {
+        type: mongoose.SchemaTypes.String,
+        required: false,
+        unique: true
+    }
 
 });
 
