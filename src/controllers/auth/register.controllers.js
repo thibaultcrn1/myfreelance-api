@@ -1,6 +1,8 @@
 const { UsersSchema } = require('../../database/schemas');
 const { v4 } = require('uuid');
 const bcrypt = require('bcrypt');
+const mailgun = require('mailgun-js');
+const sending = mailgun({ apiKey: process.env.MAILGUN_APIKEY, domain: process.env.MAILGUN_DOMAIN });
 
 async function registerControllers(req, res) {
 
@@ -28,7 +30,11 @@ async function registerControllers(req, res) {
                 password: hash,
             })
             .save()
-            .then((user) => res.status(201).send({ newUser: user }))
+            .then((user) => {
+
+                return res.status(201).send({ newUser: user })
+
+            })
             .catch((err) => res.status(500).send({ err }));
         })
         .catch((err) => res.status(500).send({ err }));
