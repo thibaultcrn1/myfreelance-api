@@ -11,11 +11,11 @@ async function createCategory(req, res) {
     if(!isActivate) return res.status(400).send({ msg: "ISACTIVATE is required" });
 
     const update = await new CategorySchema({
-        id: id,
-        name: name,
         order: order,
+        name: name,
         type: type,
         isActivate: isActivate,
+        id: id,
     });
 
     return update.save()
