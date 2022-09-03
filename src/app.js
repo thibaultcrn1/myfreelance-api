@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const cors = require('cors');
 const Store = require('connect-mongo');
+const passport = require('passport');
 require('dotenv').config();
 
 const app = express();
@@ -56,6 +57,9 @@ mongoose.connection.on('err', (err) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
+require('./middleware/auth/passport')(passport);
 
 app.use(session({
     secret: process.env.SESSION_SECRET_KEY,
