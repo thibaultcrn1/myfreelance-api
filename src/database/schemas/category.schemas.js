@@ -17,11 +17,6 @@ const CategorySchema = new mongoose.Schema({
         unique: false,
         default: 0
     },
-    type: {
-        type: mongoose.SchemaTypes.String,
-        required: false,
-        unique: false,
-    },
     isActivate: {
         type: mongoose.SchemaTypes.Boolean,
         required: true,
