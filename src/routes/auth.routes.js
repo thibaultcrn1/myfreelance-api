@@ -1,16 +1,9 @@
 const router = require('express').Router();
-const { UsersSchema } = require('../database/schemas')
+const passport = require('passport');
 
-const { registerControllers, loginControllers, refreshTokenControllers, logoutControllers, forgotPasswordControllers, resetPasswordControllers } = require('../controllers/auth');
-const { authenticateToken } = require('../middlewares/auth')
+const { registerControllers, loginControllers, refreshTokenControllers, logoutControllers, forgotPasswordControllers, resetPasswordControllers, usersControllers } = require('../controllers/auth');
 
-router.get('/users', authenticateToken, async (req, res) => {
-
-    const users = await UsersSchema.find();
-
-    res.json(users.filter(user => user.email === req.user.email));
-});
-
+router.get('/users', passport.authenticate('jwt', { session: true }), async (req, res) => usersControllers(req, res));
 router.post('/refreshtoken', (req, res) => refreshTokenControllers(req, res));
 router.post('/login', (req, res) => loginControllers(req, res));
 router.post('/register', (req, res) => registerControllers(req, res));
