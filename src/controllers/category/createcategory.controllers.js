@@ -2,18 +2,16 @@ const { CategorySchema } = require('../../database/schemas')
 
 async function createCategory(req, res) {
 
-    const { id, name, order, type, isActivate } = req.body;
+    const { id, name, order, isActivate } = req.body;
 
     if(!id) return res.status(400).send({ msg: "ID is required" });
     if(!name) return res.status(400).send({ msg: "NAME is required" });
     if(!order) return res.status(400).send({ msg: "ORDER is required" });
-    if(!type) return type = "Default";
     if(!isActivate) return res.status(400).send({ msg: "ISACTIVATE is required" });
 
     const update = await new CategorySchema({
         order: order,
         name: name,
-        type: type,
         isActivate: isActivate,
         id: id,
     });

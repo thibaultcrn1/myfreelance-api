@@ -1,5 +1,4 @@
 const { UsersSchema } = require('../../database/schemas');
-const { saveSessions } = require('../../utils');
 const bcrypt = require('bcrypt');
 
 const { generateAccessToken, generateRefreshToken } = require('../../services/auth');
@@ -35,7 +34,7 @@ async function loginControllers(req, res) {
                     accessToken, refreshToken, email
                 }
 
-                return res.send({ accessToken, refreshToken, email });
+                return res.send({ accessToken, refreshToken, email, session: req.session });
 
             } else {
                 return res.status(400).send({ msg: "Invalid Password" });
