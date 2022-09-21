@@ -58,9 +58,6 @@ mongoose.connection.on('err', (err) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(passport.initialize());
-require('./middleware/auth/passport')(passport);
-
 app.use(session({
     secret: process.env.SESSION_SECRET_KEY,
     cookie: {
@@ -68,9 +65,13 @@ app.use(session({
         httpOnly: false
     },
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     store: Store.create({ mongoUrl: process.env.MONGODB })
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+require('./middleware/auth/passport')(passport);
 
 app.use(cors({
     origin: ['http://localhost:4200'],
