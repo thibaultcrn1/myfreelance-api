@@ -71,7 +71,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('./middleware/auth/passport')(passport);
+require('./strategy/jwt/passport')(passport);
 
 app.use(cors({
     origin: ['http://localhost:4200'],
