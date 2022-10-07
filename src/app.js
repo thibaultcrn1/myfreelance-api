@@ -1,9 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const session = require('express-session');
 const cors = require('cors');
-const Store = require('connect-mongo');
-const passport = require('passport');
 require('dotenv').config();
 
 const app = express();
@@ -19,7 +16,7 @@ console.log("\\_)(_/(__/  (__)  (__\\_)(____)(____)\\____/\\_/\\_/\\_)__) \\___)
 console.log(' ');
 console.log('[POST] ' + API_URI + "/auth/register");
 console.log('[POST] ' + API_URI + "/auth/login");
-console.log('[DELETE] ' + API_URI + "/auth/logout");
+console.log('[GET] ' + API_URI + "/auth/logout");
 console.log('[PUT] ' + API_URI + "/auth/reset-password");
 console.log('[PUT] ' + API_URI + "/auth/forgot-password");
 console.log('[POST] ' + API_URI + "/auth/refreshtoken");
@@ -57,21 +54,6 @@ mongoose.connection.on('err', (err) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(session({
-    secret: process.env.SESSION_SECRET_KEY,
-    cookie: {
-        maxAge: 60000 * 60 * 24,
-        httpOnly: false
-    },
-    resave: false,
-    saveUninitialized: true,
-    store: Store.create({ mongoUrl: process.env.MONGODB })
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-require('./strategy/jwt/passport')(passport);
 
 app.use(cors({
     origin: ['http://localhost:4200'],

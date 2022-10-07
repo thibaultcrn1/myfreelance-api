@@ -5,6 +5,7 @@ const { logoutControllers } = require('./logout.contollers');
 const { forgotPasswordControllers } = require('./forgot-password.controllers');
 const { resetPasswordControllers } = require('./reset-password.controllers');
 const { usersControllers } = require('./users.controllers');
+const { userControllers } = require('./user.controllers');
 
 module.exports = {
     registerControllers,
@@ -13,5 +14,6 @@ module.exports = {
     logoutControllers,
     forgotPasswordControllers,
     resetPasswordControllers,
-    usersControllers
+    usersControllers,
+    userControllers
 };

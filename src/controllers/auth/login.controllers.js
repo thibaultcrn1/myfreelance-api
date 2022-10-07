@@ -30,11 +30,17 @@ async function loginControllers(req, res) {
                 const refreshToken = await generateRefreshToken(payload);
                 const email = user.email;
 
-                req.session.user = {
-                    accessToken, refreshToken, email
-                }
+                // Définition des cookies myFreelance_accessToken & myFreelance_refreshToken
 
-                return res.send({ accessToken, refreshToken, email, session: req.session });
+                res.cookie('myFreelance_accessToken', accessToken, {
+                    maxAge: process.env.ACCESS_TOKEN_EXPIRESIN
+                })
+
+                res.cookie('myFreelance_refreshToken', refreshToken, {
+                    maxAge: process.env.REFRESH_TOKEN_EXPIRESIN
+                })
+
+                return res.send({ accessToken, refreshToken, email });
 
             } else {
                 return res.status(400).send({ msg: "Invalid Password" });
