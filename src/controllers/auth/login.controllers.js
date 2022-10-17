@@ -30,8 +30,6 @@ async function loginControllers(req, res) {
                 const refreshToken = await generateRefreshToken(payload);
                 const email = user.email;
 
-                // Définition des cookies myFreelance_accessToken & myFreelance_refreshToken
-
                 res.cookie('myFreelance_accessToken', accessToken, {
                     maxAge: process.env.ACCESS_TOKEN_EXPIRESIN
                 })

@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const passport = require('passport');
 
 const { registerControllers, loginControllers, refreshTokenControllers, logoutControllers, forgotPasswordControllers, resetPasswordControllers, usersControllers, userControllers } = require('../controllers/auth');
 const { isAuthenticated } = require('../middleware/auth/isAuthenticated');
@@ -11,6 +10,6 @@ router.post('/login', (req, res) => loginControllers(req, res));
 router.post('/register', (req, res) => registerControllers(req, res));
 router.put('/forgot-password', (req, res) => forgotPasswordControllers(req, res));
 router.put('/reset-password', (req, res) => resetPasswordControllers(req, res));
-router.get('/logout', (req, res) => logoutControllers(req, res, next));
+router.delete('/logout', isAuthenticated, (req, res) => logoutControllers(req, res));
 
 module.exports = router;
