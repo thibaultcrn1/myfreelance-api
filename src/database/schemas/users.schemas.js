@@ -28,7 +28,7 @@ const UsersSchema = new mongoose.Schema({
         unique: true,
     },
     date: {
-        type: mongoose.SchemaTypes.String,
+        type: mongoose.SchemaTypes.Date,
         required: true,
         unique: false,
         default: Date.now(),
