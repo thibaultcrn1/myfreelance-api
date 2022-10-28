@@ -34,6 +34,9 @@ console.log('[POST] ' + API_URI + "/stock/create");
 console.log('[PUT] ' + API_URI + "/stock/update");
 console.log('[DELETE] ' + API_URI + "/stock/delete");
 console.log(' ');
+console.log('[GET] ' + API_URI + "/tva/billed");
+console.log('[GET] ' + API_URI + "/tva/not-billed");
+console.log(' ');
 
 mongoose.connect(process.env.MONGODB, {
     useUnifiedTopology: true,
