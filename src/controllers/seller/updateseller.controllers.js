@@ -1,5 +1,5 @@
-async function updateseller(req, res) {
+async function updateSeller(req, res) {
 
 };
 
-module.exports = { updateseller };
+module.exports = { updateSeller };

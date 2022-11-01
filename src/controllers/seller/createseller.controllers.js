@@ -1,5 +1,5 @@
-async function createseller(req, res) {
+async function createSeller(req, res) {
 
 }
 
-module.exports = { createseller };
+module.exports = { createSeller };

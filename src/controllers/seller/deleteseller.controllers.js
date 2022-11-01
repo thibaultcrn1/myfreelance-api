@@ -1,5 +1,5 @@
-async function deleteseller(req, res) {
+async function deleteSeller(req, res) {
 
 }
 
-module.exports = { deleteseller };
+module.exports = { deleteSeller };
