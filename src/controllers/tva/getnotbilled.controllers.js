@@ -1,7 +1,7 @@
 const { UsersSchema } = require('../../database/schemas');
 const { TvaSchema } = require('../../database/schemas');
 
-async function not_billed(req, res) {
+async function getNotBilled(req, res) {
     
     const { userId } = req.body;
 
@@ -9,4 +9,4 @@ async function not_billed(req, res) {
 
 }
 
-module.exports = { not_billed };
+module.exports = { getNotBilled };
