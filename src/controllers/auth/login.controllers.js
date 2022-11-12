@@ -30,11 +30,11 @@ async function loginControllers(req, res) {
                 const refreshToken = await generateRefreshToken(payload);
                 const email = user.email;
 
-                res.cookie('myFreelance_accessToken', accessToken, {
+                res.cookie('mf_accessToken', accessToken, {
                     maxAge: process.env.ACCESS_TOKEN_EXPIRESIN
                 })
 
-                res.cookie('myFreelance_refreshToken', refreshToken, {
+                res.cookie('mf_refreshToken', refreshToken, {
                     maxAge: process.env.REFRESH_TOKEN_EXPIRESIN
                 })
 

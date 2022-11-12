@@ -46,7 +46,7 @@ async function forgotPasswordControllers(req, res) {
                                     <tr>
                                         <td style="text-align:center;">
                                         <a href="https://www.myfreelance.com" title="logo" target="_blank">
-                                            <img width="60" src="/src/utils/images/img.png" title="logo" alt="logo">
+                                            <img width="60" src="../../utils/images/img.png" title="logo" alt="logo">
                                         </a>
                                         </td>
                                     </tr>
@@ -69,7 +69,7 @@ async function forgotPasswordControllers(req, res) {
                                                             Vous avez oublier votre mot de passe ? 
                 <br/> Pas de soucis, cliquez sur le lien ci-dessous afin de le réinitialiser.
                                                         </p>
-                                                        <a href="${process.env.CLIENT_URL}/auth/reset-password?reset=${token}"
+                                                        <a href="${process.env.FRONTEND_URL}/reset-password/${token}"
                                                             style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Changer mon mot de passe</a>
                                                     </td>
                                                 </tr>

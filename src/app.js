@@ -16,7 +16,7 @@ console.log("\\_)(_/(__/  (__)  (__\\_)(____)(____)\\____/\\_/\\_/\\_)__) \\___)
 console.log(' ');
 console.log('[POST] ' + API_URI + "/auth/register");
 console.log('[POST] ' + API_URI + "/auth/login");
-console.log('[GET] ' + API_URI + "/auth/logout");
+console.log('[DELETE] ' + API_URI + "/auth/logout");
 console.log('[PUT] ' + API_URI + "/auth/reset-password");
 console.log('[PUT] ' + API_URI + "/auth/forgot-password");
 console.log('[POST] ' + API_URI + "/auth/refreshtoken");

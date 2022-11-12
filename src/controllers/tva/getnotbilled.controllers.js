@@ -1,11 +1,10 @@
-const { UsersSchema } = require('../../database/schemas');
 const { TvaSchema } = require('../../database/schemas');
 
 async function getNotBilled(req, res) {
     
-    const { userId } = req.body;
+    const notBilled = await TvaSchema.findOne({ userId: req.user.id, type: "not-billed" });
 
-    if(!userId) return res.status(401).send({ msg: "userId is needed" });
+    return res.status(200).json(notBilled);
 
 }
 

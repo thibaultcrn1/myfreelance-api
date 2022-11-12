@@ -1,8 +1,10 @@
+const { TvaSchema } = require('../../database/schemas');
+
 async function getBilled(req, res) {
 
-    const { userId, maxPrice, minPrice } = req.body;
+    const billed = await TvaSchema.findOne({ userId: req.user.id, type: "billed" });
 
-    if(!userId) return res.status(401).send({ msg: "userId is needed" });
+    return res.status(200).json( billed );
 
 }
 

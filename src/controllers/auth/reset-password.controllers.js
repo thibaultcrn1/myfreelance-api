@@ -6,8 +6,7 @@ const bcrypt = require('bcrypt');
 
 async function resetPasswordControllers(req, res) {
 
-    const { reset } = req.query;
-    const { newPass } = req.body;
+    const { reset, newPass } = req.body;
 
     if(!reset) return res.status(400).send({ msg: "RESET needed" })
     if(!newPass) return res.status(400).send({ msg: "NEWPASS needed" })

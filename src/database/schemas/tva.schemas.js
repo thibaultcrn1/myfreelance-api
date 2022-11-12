@@ -16,7 +16,6 @@ const TvaSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
         unique: false,
         required: true,
-        default: "not-billed",
     },
     date: {
         type: mongoose.SchemaTypes.Date,
@@ -26,10 +25,12 @@ const TvaSchema = new mongoose.Schema({
     maxPrice: {
         type: mongoose.SchemaTypes.String,
         unique: false,
+        default: "10000",
     },
     minPrice: {
         type: mongoose.SchemaTypes.String,
         unique: false,
+        default: "0"
     },
     value: {
         type: mongoose.SchemaTypes.String,
